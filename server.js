@@ -25,7 +25,7 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get(
-  "https://elemental-accessible-saxophone.glitch.me",
+  "/api/timestamp/:date_string?",
   function(req, res, next) {
     req.time = new Date().toString();
     //  console.log(req.time)
