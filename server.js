@@ -24,9 +24,20 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-
+app.get(
+  "https://elemental-accessible-saxophone.glitch.me",
+  function(req, res, next) {
+    req.time = new Date().toString();
+    //  console.log(req.time)
+    next();
+  },
+  function(req, res) {
+    res.json({ time: req.time });
+  }
+);
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
