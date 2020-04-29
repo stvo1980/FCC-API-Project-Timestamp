@@ -28,13 +28,14 @@ app.get(
   "/api/timestamp/:date_string?",
   function(req, res, next) {
     var dateString = req.params.date_string;
-    var date = new Date(dateString || Date.now());
+ //   var date = new Date(dateString || Date.now());
   //  req.time = new Date().toString();
   //  var dateFormat = {
    //   year: "numeric",
   //    month: "long",
   //    day: "numeric"
   //  }
+    var check = new Date(dateString).toUTCString();
     var result;
     //  console.log(req.time)
     if(isNaN(dateString)){
@@ -45,7 +46,15 @@ app.get(
         
       
    
-       }     
+       }  else if(dateString==undefined) {
+      var utc = new Date(Date.now());
+         var unix = new Date(dateString).getTime();
+      result = {"unix":unix,  "utc": utc};
+         
+      result = {"error":"Invalid Date"};
+      
+      
+    }   
     else  {
       var unix = Number(dateString)
       var utc = new Date(dateString*1000);
