@@ -49,7 +49,7 @@ app.get(
       result = {"unix":unix,  "utc": utc};
          
  //     result = {"error":"Invalid Date"};
-     }  else if(isNaN(dateString)){
+     }  else if(!isNaN(dateString)){
        var utc = new Date(dateString);
       utc = utc.toUTCString();
       var unix = new Date(dateString).getTime();
@@ -67,15 +67,9 @@ app.get(
       
     }
    
-    
+   
   
-    res.json(
-      if(utc =="Invalid Date") {
-      return "error"
-    } else {
-      return result};
-  
-);
+    res.json(result);
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
