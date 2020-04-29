@@ -24,7 +24,11 @@ app.get(
   "/api/timestamp/:date_string?",
   function(req, res, next) {
     var dateString = req.params.date_string;
-    var result;
+        var result;
+    var check = Number(dateString);
+    console.log("check", check)
+    var test = new Date(check);
+    console.log('test', test)
    if(dateString == null) {
      var utc = new Date(Date.now());
          utc = utc.toUTCString();
@@ -43,7 +47,7 @@ app.get(
     else 
     {
       var unix = dateString;
-      var utc = new Date(Number(dateString);
+      var utc = new Date(Number(dateString));
       utc = utc.toUTCString();
       result = {"unix":unix,  "utc": utc};
             
