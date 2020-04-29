@@ -44,15 +44,7 @@ app.get(
         
       
    
-       } else if(dateString==)  {
-      var unix = dateString;
-      var utc = new Date(dateString*1000);
-      utc = utc.toUTCString();
-      result = {"error" : "Invalid Date" };
-      
-      
-    }
-    
+       }     
     else  {
       var unix = dateString;
       var utc = new Date(dateString*1000);
@@ -61,7 +53,7 @@ app.get(
       
       
     }
-    console.log(dateString);
+   
     
   
     res.json(result);
