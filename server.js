@@ -27,15 +27,18 @@ app.get(
         var result;
     var check = Number(dateString);
     console.log("check", check)
-    var test = new Date(check);
+    var test = new Date(dateString).getTime();
     console.log('test', test)
+    //if empty
    if(dateString == null) {
      var utc = new Date(Date.now());
          utc = utc.toUTCString();
     var  unix = new Date(utc).getTime();
       result = {"unix":unix,  "utc": utc};
-    }     
+    }    
+    //no number
    else if(isNaN(dateString)){
+     if(is )
        var utc = new Date(dateString);
       utc = utc.toUTCString();
      var unix = new Date(dateString).getTime();
@@ -43,9 +46,9 @@ app.get(
          
    
        } 
-    
+    //unix number input 
     else 
-    {
+    { 
       var unix = dateString;
       var utc = new Date(Number(dateString));
       utc = utc.toUTCString();
