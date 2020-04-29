@@ -25,10 +25,14 @@ app.get(
   function(req, res, next) {
     var dateString = req.params.date_string;
  //   console.log(dateString);
- var unix = new Date(utc).getTime();
+ var check = new Date(dateString).getTime();
+    
     var result;
- console.log("unix", unix);
-    if(dateString == null) {
+ console.log("check", check);
+   if (isNaN(check)){
+     result = {'s': 's'}
+   }
+  else  if(dateString == null) {
      var utc = new Date(Date.now());
          utc = utc.toUTCString();
       unix = new Date(utc).getTime();
