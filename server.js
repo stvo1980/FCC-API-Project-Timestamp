@@ -27,12 +27,11 @@ app.get("/api/hello", function (req, res) {
 app.get(
   "/api/timestamp/:date_string?",
   function(req, res, next) {
+    var dateString = req.params.date_string;
     req.time = new Date().toString();
     //  console.log(req.time)
-    next();
-  },
-  function(req, res) {
-    res.json({ time: req.time });
+  
+    res.json({ "utc": dateString });
   }
 );
 
