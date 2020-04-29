@@ -30,8 +30,14 @@ app.get(
     var dateString = req.params.date_string;
     req.time = new Date().toString();
     //  console.log(req.time)
+    if(isNan(dateString)){
+       var utc = new Date(dateString);
+      utc = utc.toLocalDateString("en-us")
+       }
+    
+    
   
-    res.json({ "utc": dateString });
+    res.json({"unix": "utc": dateString  });
   }
 );
 
