@@ -28,6 +28,7 @@ app.get(
   "/api/timestamp/:date_string?",
   function(req, res, next) {
     var dateString = req.params.date_string;
+    console.log(dateString);
  //   var date = new Date(dateString || Date.now());
   //  req.time = new Date().toString();
   //  var dateFormat = {
@@ -46,12 +47,14 @@ app.get(
         
       
    
-       }  else if(dateString==undefined) {
-      var utc = new Date(Date.now());
-         var unix = new Date(dateString).getTime();
+       }  else if(req.params.date_string == null) {
+   //   var utc = new Date(Date.now());
+     //    utc = utc.toUTCString();
+         var utc = "hello";
+         var unix = new Date(utc).getTime();
       result = {"unix":unix,  "utc": utc};
          
-      result = {"error":"Invalid Date"};
+ //     result = {"error":"Invalid Date"};
       
       
     }   
