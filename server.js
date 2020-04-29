@@ -39,18 +39,10 @@ app.get(
     var check = new Date(dateString).toUTCString();
     var result;
     //  console.log(req.time)
-    if(isNaN(dateString)){
-       var utc = new Date(dateString);
-      utc = utc.toUTCString();
-      var unix = new Date(dateString).getTime();
-      result = {"unix":unix,  "utc": utc};
-        
-      
-   
-       }  else if(req.params.date_string == null) {
-   //   var utc = new Date(Date.now());
-     //    utc = utc.toUTCString();
-         var utc = "hello";
+    if(dateString == null) {
+     var utc = new Date(Date.now());
+         utc = utc.toUTCString();
+     //    var utc = "hello";
          var unix = new Date(utc).getTime();
       result = {"unix":unix,  "utc": utc};
          
@@ -58,7 +50,17 @@ app.get(
       
       
     }   
-    else  {
+    
+   else if(isNaN(dateString)){
+       var utc = new Date(dateString);
+      utc = utc.toUTCString();
+      var unix = new Date(dateString).getTime();
+      result = {"unix":unix,  "utc": utc};
+        
+      
+   
+       }  else 
+    {
       var unix = Number(dateString)
       var utc = new Date(dateString*1000);
       utc = utc.toUTCString();
