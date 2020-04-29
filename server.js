@@ -29,15 +29,21 @@ app.get(
   function(req, res, next) {
     var dateString = req.params.date_string;
     req.time = new Date().toString();
+    var dateFormat = {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    }
     //  console.log(req.time)
-    if(isNan(dateString)){
+    if(isNaN(dateString)){
        var utc = new Date(dateString);
-      utc = utc.toLocalDateString("en-us")
+      utc = utc.toLocaleDateString("en-us",dateFormat)
        }
+    var unix = new Date(dateString).getTime()/1000
     
     
   
-    res.json({"unix": "utc": dateString  });
+    res.json({"unix":dateString,  "utc": dateString  });
   }
 );
 
