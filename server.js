@@ -24,26 +24,26 @@ app.get(
   "/api/timestamp/:date_string?",
   function(req, res, next) {
     var dateString = req.params.date_string;
-    console.log(dateString);
- 
+ //   console.log(dateString);
+ var unix = new Date(utc).getTime();
     var result;
- 
+ console.log("unix", unix);
     if(dateString == null) {
      var utc = new Date(Date.now());
          utc = utc.toUTCString();
-     var unix = new Date(utc).getTime();
+      unix = new Date(utc).getTime();
       result = {"unix":unix,  "utc": utc};
-    }   
-    
+    }     
    else if(isNaN(dateString)){
        var utc = new Date(dateString);
       utc = utc.toUTCString();
-      var unix = new Date(dateString).getTime();
+      unix = new Date(dateString).getTime();
       result = {"unix":unix,  "utc": utc};
-        
-      
+           
    
-       }  else 
+       } 
+    
+    else 
     {
       var unix = Number(dateString)
       var utc = new Date(dateString*1000);
@@ -52,6 +52,7 @@ app.get(
             
     }
    
+    
     
   
     res.json(result);
