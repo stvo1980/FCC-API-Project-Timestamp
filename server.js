@@ -41,13 +41,24 @@ app.get(
       var unix = new Date(dateString).getTime()/1000 
    
        }
-    else {
+     else if (dateString ===null) {
+      
+      var utc = new Date();
+      utc = utc.toUTCString();
+       var unix = new Date().getTime()/1000 ;
+      
+      
+    }
+    
+    
+    else  {
       var unix = dateString;
-      var utc = new Date(dateString*1000);
+      var utc = new Date(dateString);
       utc = utc.toUTCString();
       
       
     }
+    console.log(dateString);
     
   
     res.json({"unix":unix,  "utc": utc  });
