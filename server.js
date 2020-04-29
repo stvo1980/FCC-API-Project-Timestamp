@@ -34,23 +34,37 @@ app.get(
       month: "long",
       day: "numeric"
     }
+    var result;
     //  console.log(req.time)
     if(isNaN(dateString)){
        var utc = new Date(dateString);
-      utc = utc.toLocaleDateString("en-us", dateFormat );
-      var unix = new Date(dateString).getTime()/1000 
+      utc = utc.toUTCString();
+      var unix = new Date(dateString).getTime()/1000;
+      result = {"unix":unix,  "utc": utc};
+        
+      
    
-       } else  {
+       } else if(dateString==)  {
       var unix = dateString;
       var utc = new Date(dateString*1000);
       utc = utc.toUTCString();
+      result = {"error" : "Invalid Date" };
+      
+      
+    }
+    
+    else  {
+      var unix = dateString;
+      var utc = new Date(dateString*1000);
+      utc = utc.toUTCString();
+      result = {"unix":unix,  "utc": utc};
       
       
     }
     console.log(dateString);
     
   
-    res.json({"unix":unix,  "utc": utc  });
+    res.json(result);
   }
 );
 
