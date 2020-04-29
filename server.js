@@ -28,25 +28,26 @@ app.get(
   "/api/timestamp/:date_string?",
   function(req, res, next) {
     var dateString = req.params.date_string;
+    var date = new Date(dateString || Date.now());
   //  req.time = new Date().toString();
-    var dateFormat = {
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    }
+  //  var dateFormat = {
+   //   year: "numeric",
+  //    month: "long",
+  //    day: "numeric"
+  //  }
     var result;
     //  console.log(req.time)
     if(isNaN(dateString)){
        var utc = new Date(dateString);
       utc = utc.toUTCString();
-      var unix = new Date(dateString).getTime()/1000;
+      var unix = new Date(dateString).getTime();
       result = {"unix":unix,  "utc": utc};
         
       
    
        }     
     else  {
-      var unix = dateString;
+      var unix = Number(dateString)
       var utc = new Date(dateString*1000);
       utc = utc.toUTCString();
       result = {"unix":unix,  "utc": utc};
