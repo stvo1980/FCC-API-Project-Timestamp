@@ -28,7 +28,7 @@ app.get(
   "/api/timestamp/:date_string?",
   function(req, res, next) {
     var dateString = req.params.date_string;
-    req.time = new Date().toString();
+  //  req.time = new Date().toString();
     var dateFormat = {
       year: "numeric",
       month: "long",
@@ -37,13 +37,18 @@ app.get(
     //  console.log(req.time)
     if(isNaN(dateString)){
        var utc = new Date(dateString);
-      utc = utc.toLocaleDateString("en-us",dateFormat)
+      utc = utc.toLocaleDateString("en-us",dateFormat);
+      var unix = new Date(dateString).getTime()/1000 
+   
        }
-    var unix = new Date(dateString).getTime()/1000
-    
+    else {
+      var unix = dateString;
+      var utc = new Date(dateString).getTime()*1000;
+      
+    }
     
   
-    res.json({"unix":dateString,  "utc": dateString  });
+    res.json({"unix":unix,  "utc": utc  });
   }
 );
 
