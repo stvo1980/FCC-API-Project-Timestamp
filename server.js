@@ -25,26 +25,14 @@ app.get(
   function(req, res, next) {
     var dateString = req.params.date_string;
     console.log(dateString);
- //   var date = new Date(dateString || Date.now());
-  //  req.time = new Date().toString();
-  //  var dateFormat = {
-   //   year: "numeric",
-  //    month: "long",
-  //    day: "numeric"
-  //  }
-    var check = new Date(dateString).toUTCString();
+ 
     var result;
-    //  console.log(req.time)
+ 
     if(dateString == null) {
      var utc = new Date(Date.now());
          utc = utc.toUTCString();
-     //    var utc = "hello";
-         var unix = new Date(utc).getTime();
+     var unix = new Date(utc).getTime();
       result = {"unix":unix,  "utc": utc};
-         
- //     result = {"error":"Invalid Date"};
-      
-      
     }   
     
    else if(isNaN(dateString)){
@@ -61,14 +49,13 @@ app.get(
       var utc = new Date(dateString*1000);
       utc = utc.toUTCString();
       result = {"unix":unix,  "utc": utc};
-      
-      
+            
     }
    
     
   
     res.json(result);
-
+  })
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
