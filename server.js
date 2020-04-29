@@ -28,7 +28,7 @@ app.get(
   "/api/timestamp/:date_string?",
   function(req, res, next) {
     var dateString = req.params.date_string;
-    console.log(dateString);
+  //  console.log(dateString);
  //   var date = new Date(dateString || Date.now());
   //  req.time = new Date().toString();
   //  var dateFormat = {
@@ -37,6 +37,8 @@ app.get(
   //    day: "numeric"
   //  }
     var check = new Date(dateString).toUTCString();
+    console.log(check);
+    
     var result;
     //  console.log(req.time)
     if(dateString == null) {
@@ -47,20 +49,16 @@ app.get(
       result = {"unix":unix,  "utc": utc};
          
  //     result = {"error":"Invalid Date"};
-      
-      
-    }   
-    
-   else if(isNaN(dateString)){
+     }  else if(isNaN(dateString)){
        var utc = new Date(dateString);
       utc = utc.toUTCString();
       var unix = new Date(dateString).getTime();
       result = {"unix":unix,  "utc": utc};
-        
-      
-   
-       }  else 
-    {
+                
+       } 
+    
+    
+    else {
       var unix = Number(dateString)
       var utc = new Date(dateString*1000);
       utc = utc.toUTCString();
@@ -71,8 +69,12 @@ app.get(
    
     
   
-    res.json(result);
-  }
+    res.json(
+      if(utc =="Invalid Date") {
+      return "error"
+    } else {
+      return result};
+  
 );
 
 // listen for requests :)
