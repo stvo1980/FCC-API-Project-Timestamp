@@ -25,10 +25,10 @@ app.get(
   function(req, res, next) {
     var dateString = req.params.date_string;
         var result;
-    var check = Number(dateString);
-    console.log("check", check)
+ //   var check = Number(dateString);
+ //   console.log("check", check)
     var test = new Date(dateString).getTime();
-    console.log('test', test)
+ //   console.log('test', test)
     //if empty
    if(dateString == null) {
      var utc = new Date(Date.now());
@@ -36,29 +36,24 @@ app.get(
     var  unix = new Date(utc).getTime();
       result = {"unix":unix,  "utc": utc};
     }    
-    //no number
+    //if not a  number
    else if(isNaN(dateString)){
-     if(is )
-       var utc = new Date(dateString);
+     if(isNaN(test)){
+       result = {"error" : "Invalid Date" }
+     } else {
+      var utc = new Date(dateString);
       utc = utc.toUTCString();
-     var unix = new Date(dateString).getTime();
-      result = {"unix":unix,  "utc": utc};
-         
-   
+      var unix = new Date(dateString).getTime();
+      result = {"unix":unix,  "utc": utc};}
+            
        } 
     //unix number input 
-    else 
-    { 
+    else { 
       var unix = dateString;
       var utc = new Date(Number(dateString));
       utc = utc.toUTCString();
       result = {"unix":unix,  "utc": utc};
-            
-    }
-   
-    
-    
-  
+     }
     res.json(result);
   })
 
